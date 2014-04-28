@@ -1,0 +1,11 @@
+addi $s3, $s0, 8
+addi $s4, $s0, 1 
+addi $s5, $s0, -1 
+beq $s3, $s0, 8
+add $s4, $s4, $s5 
+sub $s5, $s4, $s5 
+addi $s3, $s3, -1 
+j 3
+sb $s4, 255($0) 
+or $s3, $s4, $s0 
+j 0
