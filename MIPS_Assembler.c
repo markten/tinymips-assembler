@@ -139,10 +139,11 @@ char *conv_to_bin(int value)
         }
         else string_size = 1;
         if(debug) printf("\tstring_size: %d\n", string_size);
-        string_in_binary = (char *)malloc(string_size*sizeof(char));  
+        string_in_binary = (char *)malloc((string_size+1)*sizeof(char));  
         if(debug) printf("\tZero the string\n"); 
         for(index = 0; index < string_size; index++)
             string_in_binary[index] = '1';
+        string_in_binary[string_size] = '\0';
         if(debug) printf("\tSet bits: %s\n", string_in_binary);
     	for(index = string_size; index > 0; index--)
     		if(value >= pow(2,index))	{value -= pow(2,index); string_in_binary[string_size-index-1] = '0';}
@@ -160,10 +161,11 @@ char *conv_to_bin(int value)
         }
         else string_size = 1;
         if(debug) printf("\tstring_size: %d\n", string_size);
-        string_in_binary = (char *)malloc(string_size*sizeof(char));  
+        string_in_binary = (char *)malloc((string_size+1)*sizeof(char));  
         if(debug) printf("\tZero the string\n"); 
         for(index = 0; index < string_size; index++)
             string_in_binary[index] = '0';
+        string_in_binary[string_size] = '\0';
         if(debug) printf("\tSet bits: %s\n", string_in_binary);
     	for(index = string_size; index > 0; index--)
     		if(value >= pow(2,index))	{value -= pow(2,index); string_in_binary[string_size-index-1] = '1';}
@@ -231,14 +233,14 @@ int main(int argc, char* argv[])
 			// Tokenize the line
 			printf("\nReading line: %s", buffer);			
 
-			token = strtok(buffer, " \t\n,");
+			token = strtok(buffer, " \t\n\r,");
 			//printf("Cutting rest of string\n");
 	
 			while(token != NULL)
 			{
 				//printf("\tCopying token (%s)...\n", token);
 				strcpy(strings[index], token);				
-				token = strtok(NULL, " \t\n,");
+				token = strtok(NULL, " \t\n\r,");
 				index++;
 			}
 			
