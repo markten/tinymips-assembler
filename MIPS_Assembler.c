@@ -349,12 +349,11 @@ int main(int argc, char* argv[])
 			}
             
             // Write data to .DAT file
-            printf("\tinstr: %s\n", instr);
-            for(int four = 0; four < 4; four ++)
-            {                
-                for(int eight = 0; eight < 8; eight++)
-                    fprintf(drain, "%c", instr[eight+(four*eight)]);
-                fprintf(drain, " ");
+            printf("\tinstr: %s\n", instr);               
+            for(int thirtytwo = 0; thirtytwo < 32; thirtytwo++)
+            {            
+                if(thirtytwo % 8 == 0) fprintf(drain, "%c", ' ');
+                fprintf(drain, "%c", instr[thirtytwo]);
             }
             fprintf(drain, "\n");
 		}
